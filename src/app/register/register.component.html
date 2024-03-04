@@ -1,0 +1,79 @@
+<div
+  style="width: 100%; height: 100vh;margin-top: 80px;"
+  class="d-flex justify-content-center align-items-center"
+>
+  <div
+    style="width: 900px"
+    class="shadow bg-primary row rounded p-5 align-items-center"
+  >
+    <div class="col-lg-6">
+      <img
+        class="container"
+        src="https://www.1stop.ai/images/login-bg.png"
+        alt=""
+      />
+    </div>
+    <div class="col-lg-6">
+      <form  class="border p-5 rounded" >
+        <h1 class="fw-bolder mb-5 text-light">Register</h1>
+        <div class="form-floating mb-3">
+            <input
+              name="Uname"
+              
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Username"
+              email
+              required
+             
+            />
+            <label for="floatingInput">Username</label>
+          </div>
+        <div class="form-floating mb-3">
+          <input
+            name="email"
+            
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example@gmail.com"
+            email
+            required
+           
+          />
+          <label for="floatingInput">Email Address</label>
+        </div>
+        <!-- invalid email
+        <div  class="text-danger mb-3">
+            *Invalid Email
+        </div> -->
+        <div class="form-floating mb-3">
+          <input
+            name="password"
+            
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            pattern="[a-zA-Z0-9]*"
+            minlength="3"
+            required
+            
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <!-- <div  class="text-danger mb-3">
+            *Invalid Password
+        </div> -->
+        <div>
+          <button type="submit"  class="btn btn-dark">Register</button>
+        </div>
+        <div class="text-light mt-3">
+            Already a User? Click Here To <span style="cursor: pointer;" class="text-dark fw-bolder" routerLink="/login">Login</span>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
