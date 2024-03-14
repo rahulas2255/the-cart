@@ -6,18 +6,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item me-3 d-flex">
+            <input (keyup)="getSearchTerm($event)" class="form-control me-2" type="text" placeholder="Search By Product" aria-label="Search">
+          </li>
           <li class="nav-item me-3">
-            <input class="form-control me-2" type="search" placeholder="Search By Product" aria-label="Search">
-        </li>
-          <li class="nav-item me-3">
-            <button class="btn btn-outline-dark" type="submit"><i class="fa-solid fa-heart text-danger"></i>Wishlist <span class="badge bg-dark">0</span> </button>
+            <button class="btn btn-outline-dark" type="submit" routerLink="/wishlist"><i class="fa-solid fa-heart text-danger" ></i>Wishlist <span class="badge bg-dark"> {{wishlistCount}} </span> </button>
         </li>
           
           <li class="nav-item me-3">
-            <button class="btn btn-outline-dark" type="submit"><i class="fa-solid fa-cart-shopping text-success"></i>Cart <span class="badge bg-dark">0</span></button>
+            <button class="btn btn-outline-dark" type="submit" routerLink="/cart"><i class="fa-solid fa-cart-shopping text-success" ></i>Cart <span class="badge bg-dark"> {{cartCount}} </span></button>
           </li>
-          <li class="nav-item me-3">
-            <button class="btn btn-outline-dark" type="submit"><i class="fa-solid fa-user text-primary"></i>Login </button>
+          <li *ngIf="!loginUsername" class="nav-item me-3">
+            <button class="btn btn-outline-dark" type="submit" routerLink="/login"><i class="fa-solid fa-user text-primary" ></i>Login </button>
+          </li>
+          <li *ngIf="loginUsername" class="nav-item me-3">
+            <span  style="text-decoration: none; color: black;" class="me-2" ><i class="fa-solid fa-user text-primary" ></i> {{loginUsername}} </span>
+            <a (click)="logout()" class="btn btn-outline-primary" href="">Logout</a>
+
           </li>
         </ul>
        

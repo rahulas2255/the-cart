@@ -1,3 +1,4 @@
+<app-header></app-header>
 <!-- Header-->
 <header  >
   <div
@@ -57,29 +58,32 @@
     <div
       class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
     >
-      <div class="col mb-5">
+    <div *ngIf="(allProducts | search:searchKey).length==0 " class="fw-bolder mt-5 text-danger text-center fs-3">Products Not found!!!!</div>
+      <div *ngFor="let product of allProducts | search:searchKey " class="col mb-5">
         <div class="card h-100">
           <!-- Product image-->
           <img
-            routerLink="/view/1"
+          width="200px"
+          height="300px"
+            routerLink="/view/{{product.id}}"
             class="card-img-top"
-            src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-            alt="..."
+            [src]="product.image"
+            [alt]="product.title"
           />
           <!-- Product details-->
           <div class="card-body p-4">
             <div class="text-center">
               <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
+              <h5 class="fw-bolder">{{product.title.slice(0,20)}}...</h5>
               <!-- Product price-->
-              $40.00 - $80.00
+              ${{product.price}}
             </div>
           </div>
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="d-flex justify-content-between">
-              <button class="btn" > <i class="fa-solid fa-heart text-danger fs-3"></i> </button>
-              <button class="btn" > <i class="fa-solid fa-cart-plus text-success fs-3"></i> </button>
+              <button (click)="addToWishlist(product)" class="btn" > <i class="fa-solid fa-heart text-danger fs-3"></i> </button>
+              <button (click)="addToCart(product)" class="btn" > <i class="fa-solid fa-cart-plus text-success fs-3"></i> </button>
 
             </div>
           </div>

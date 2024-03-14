@@ -1,1 +1,71 @@
-<p>cart works!</p>
+<app-header></app-header>
+<app-header></app-header>
+<!-- Section-->
+<section class="py-5">
+  <div *ngIf="allProducts.length==0" style="height: 70vh;" class="d-flex justify-content-center align-items-center w-100">
+    <img class="img-fluid" src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-2130356-1800917.png" alt="">
+    <h1 class="text-primary"> Your Cart Is Empty!!!!</h1>
+  </div>
+    <div *ngIf="allProducts.length!=0" class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-dark mb-5">Your Cart.</h1>
+      <div class="row"
+      >
+       <div class="col-lg-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>Image</th>
+                    <th>Quantity</th>
+                    <th>price</th>
+                    <th>...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of allProducts; let i = index" >
+                    <td>{{i+1}}</td>
+                    <td> {{product.title.slice(0,20)}} </td>
+                    <td><img width="60px" height="60px" [src]="product.image" alt=""></td>
+                    <td>
+                        <div class="d-flex">
+                            <button (click)="decrementQuantity(product._id)" class="btn fw-bolder">-</button>
+                            <input style="width: 60px;" [value]="product.quantity" type="text" class="form-control" readonly>
+                            <button (click)="incrementQuantity(product._id)" class="btn fw-bolder">+</button>
+
+                        </div>
+                    </td>
+                    <td>$ {{product.totalPrice}} </td>
+                    <td> <button (click)="deleteItem(product._id)" class="btn"> <i class="fa-solid fa-trash text-danger"></i> </button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="float-end mt-5">
+            <button (click)="emptyCart()" class="btn btn-danger">EMPTY CART</button>
+            <button routerLink="" class="btn btn-primary ms-3">SHOP MORE</button>
+        </div>
+       </div>
+       <div class="col-lg-4">
+        <div class="border rounded p-3">
+            <h3>Total : <span class="text-danger"> $ {{cartTotalPrice}} </span></h3>
+            <h6 *ngIf="!couponStatus" (click)="getCoupon()" class="mt-3"> Click here to view <span class="btn-link text-primary"> <i class="fa-solid fa-tag"></i> offers </span> </h6>
+            <div *ngIf="couponStatus" class="d-flex justify-content-evenly mt-3">
+                <ng-container *ngIf="cartTotalPrice>50 && cartTotalPrice<250 && !couponClickStatus">
+                    <img (click)="discount5()" width="100px" height="100px" class="img-fluid" src="https://png.pngtree.com/png-vector/20221019/ourmid/pngtree-5-off-label-design-png-image_6353377.png" alt="5%">
+                </ng-container>
+                <ng-container *ngIf="cartTotalPrice>250 && cartTotalPrice<500  && !couponClickStatus"><img (click)="discount20()" width="80px" height="40px" class="img-fluid" src="https://www.freeiconspng.com/thumbs/20-off-png/circle-20-off-png-1.png" alt="20%"></ng-container>
+                <ng-container  *ngIf="cartTotalPrice>500 && !couponClickStatus"><img (click)="discount50()" width="90px" height="90px" class="img-fluid" src="https://png.pngtree.com/png-vector/20230522/ourmid/pngtree-50-off-discount-tag-vector-png-image_7105065.png" alt="50%"></ng-container>
+                
+            </div>
+            <div (click)="checkout()" class="d-grid mt-5">
+                <button class="btn btn-success">
+                    Checkout
+                </button>
+            </div>
+        </div>
+       </div>
+        
+      </div>
+    </div>
+  </section>
+  
